@@ -1,4 +1,4 @@
-<h1 align="center">Apple ID 单解锁后端🔒</h1>
+<h1 align="center">Apple ID 单解锁后端程序🔒</h1>
 <p align="center">
     <a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
         <img src="https://img.shields.io/github/issues/pplulee/appleid_auto.svg" alt="GitHub issues"/>
@@ -26,9 +26,9 @@
 
 ### 注意事项：
 
-1. 目前**后端运行基于docker**，请确保机器已安装docker；
-2. main**后端程序**，会定时从API获取任务列表并部署(通过systemctl)；
-3. 程序**需要使用Chrome webdriver**，~~推荐使用Docker版 [selenium/standalone-chrome](https://hub.docker.com/r/selenium/standalone-chrome)，使用方法请自行寻找。~~下载地址格式[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/**
+
+1. main**后端程序**，通过systemctl部署并从API获取任务参数[单任务]；
+2. 程序**需要使用Chrome webdriver**，~~推荐使用Docker版 [selenium/standalone-chrome](https://hub.docker.com/r/selenium/standalone-chrome)，使用方法请自行寻找。~~下载地址格式[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/**
 ```
 wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip
 unzip chromedriver_linux64.zip
