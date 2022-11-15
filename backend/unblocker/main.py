@@ -6,7 +6,7 @@ import re
 import string
 import time
 from json import loads
-
+import datetime
 import ddddocr
 import schedule
 from requests import get
@@ -16,7 +16,6 @@ from telegram.ext import Updater, CommandHandler
 parser = argparse.ArgumentParser(description="")
 parser.add_argument("-api_url", help="API URL")
 parser.add_argument("-api_key", help="API key")
-parser.add_argument("-taskid", help="Task ID")
 args = parser.parse_args()
 
 
@@ -24,10 +23,34 @@ class API:
     def __init__(self, url, key):
         self.url = url
         self.key = key
+    def get_taskid(self):
+        try:
+            result = loads(get(f"{self.url}/api/?key={self.key}&action=get_task_list",verify=False).text)
+        except Exception as e:
+            error("获取任务列表失败")
+            return False
+        else:
+            if result['status'] == "fail":
+                error("获取任务列表失败")
+                return False
+            elif result['data'] == "":
+                return []
+            else:
+                return result['data']
+    def get_password(self, username):
+        try:
+            result = loads(get(f"{self.url}/api/?key={self.key}&action=get_password&username={username}",verify=False).text)
+        except BaseException:
+            return False
+        else:
+            if result["status"] == "success":
+                return result["password"]
+            else:
+                return ""
 
     def get_config(self, id):
         try:
-            result = loads(get(f"{self.url}/api/?key={self.key}&action=get_task_info&id={id}", verify=False).text)
+            result = loads(get(f"{self.url}/api/?key={self.key}&action=get_task_info&id={id}",verify=False).text)
         except BaseException:
             return {"status": "fail"}
         else:
@@ -39,8 +62,7 @@ class API:
     def update(self, username, password):
         try:
             result = loads(
-                get(f"{self.url}/api/?key={self.key}&username={username}&password={password}&action=update_password",
-                    verify=False).text)
+                get(f"{self.url}/api/?key={self.key}&username={username}&password={password}&action=update_password",verify=False).text)
         except BaseException:
             return {"status": "fail"}
         else:
@@ -53,6 +75,11 @@ class API:
 class Config:
     def __init__(self, username, dob, q1, a1, q2, a2, q3, a3, check_interval, tgbot_token, tgbot_chatid, step_sleep,
                  webdriver):
+        self.tg_task_job=False
+        self.remote_driver = False
+        self.start_hour = 22
+        self.end_hour = 24
+        self.enable_tg_notify = False
         self.tgbot_enable = False
         self.password_length = 10
         self.username = username
@@ -62,9 +89,11 @@ class Config:
         self.webdriver = webdriver
         self.step_sleep = step_sleep
         if tgbot_chatid != "" and tgbot_token != "":
-            self.tgbot_enable = True
+            self.tgbot_enable = True      
             self.tgbot_chatid = tgbot_chatid
             self.tgbot_token = tgbot_token
+        if self.webdriver != "local":
+            self.remote_driver = True
 
     def __str__(self) -> str:
         return f"Username: {self.username}\n" \
@@ -73,6 +102,7 @@ class Config:
                f"Check Interval: {self.check_interval}\n" \
                f"Webdriver: {self.webdriver}\n" \
                f"Step Sleep: {self.step_sleep}\n" \
+               f"Remote Driver: {self.remote_driver}\n" \
                f"Telegram Bot: {self.tgbot_enable}\n" \
                f"Password Length: {self.password_length}"
 
@@ -81,17 +111,26 @@ class TGbot:
     def __init__(self, chatid, token):
         self.updater = Updater(token)
         self.updater.dispatcher.add_handler(CommandHandler('ping', self.ping))
+        self.updater.dispatcher.add_handler(CommandHandler('password', self.password))
         self.updater.dispatcher.add_handler(CommandHandler('job', self.job))
         self.updater.start_polling()
 
     def ping(self, bot, update):
         info("Telegram 检测存活")
-        self.sendmessage("还活着捏")
-
+        self.sendmessage("Telegram 检测存活")
+    def password(self,bot, update):
+        info("发送密码")
+        self.sendmessage(id.password)
     def job(self, bot, update):
         info("手动执行任务")
         self.sendmessage("开始检测账号")
+        time1 = datetime.datetime.now()
+        config.tg_task_job=True
         job()
+        time2 = datetime.datetime.now()
+        config.enable_tg_notify=False
+        config.tg_task_job=False
+        self.sendmessage("Finish job✅\nTime: "+str(time2-time1))
 
     def sendmessage(self, text):
         return self.updater.bot.send_message(chat_id=config.tgbot_chatid, text=text)["message_id"]
@@ -122,14 +161,6 @@ class ID:
             driver.switch_to.alert.accept()
         except BaseException:
             pass
-        try:
-            text = driver.find_element("xpath", "/html/body/center[1]/h1").text
-        except BaseException:
-            pass
-        else:
-            error("页面加载失败，疑似服务器IP被拒绝访问")
-            print(text)
-            exit()
         time.sleep(config.step_sleep)
 
     def login(self):
@@ -178,6 +209,7 @@ class ID:
         try:
             driver.find_element("xpath",
                                 "/html/body/div[1]/iforgot-v2/app-container/div/iforgot-body/hsa-two-v2/recovery-web-app/idms-flow/div/div/trusted-phone-number/div/h1")
+            # open(os.path.abspath(os.path.dirname(__file__))+'/page_source.html', "w").write(driver.page_source)
         except BaseException:
             info("当前账号未开启2FA")
             return False  # 未开启2FA
@@ -187,13 +219,8 @@ class ID:
 
     def unlock_2fa(self):
         if self.check_2fa():
-            try:
-                driver.find_element("xpath",
-                                    "/html/body/div[1]/iforgot-v2/app-container/div/iforgot-body/hsa-two-v2/recovery-web-app/idms-flow/div/div/trusted-phone-number/div/div/div[1]/idms-step/div/div/div/div[2]/div/div/div/button").click()
-            except BaseException:
-                error("无法找到关闭验证按钮，可能是账号不允许关闭2FA，退出程序")
-                driver.quit()
-                exit()
+            driver.find_element("xpath",
+                                "/html/body/div[1]/iforgot-v2/app-container/div/iforgot-body/hsa-two-v2/recovery-web-app/idms-flow/div/div/trusted-phone-number/div/div/div[1]/idms-step/div/div/div/div[2]/div/div/div/button").click()
             time.sleep(config.step_sleep)
             driver.find_element("xpath",
                                 "/html/body/div[5]/div/div/recovery-unenroll-start/div/idms-step/div/div/div/div[3]/idms-toolbar/div/div/div/button[1]").click()
@@ -282,32 +309,44 @@ class ID:
                 self.password)
             driver.find_element("id", "action").click()
             time.sleep(10)
+    def time_check(self):
+        now = datetime.datetime.now()
+        if now.hour > config.start_hour and now.hour < config.end_hour:
+            config.enable_tg_notify=True
+        else:
+            config.enable_tg_notify=False
 
 
-def info(text):
-    logging.info(text)
-    print(datetime.datetime.now().strftime("%H:%M:%S"), "[INFO]", text)
-
-
-def error(text):
-    logging.critical(text)
-    print(datetime.datetime.now().strftime("%H:%M:%S"), "[ERROR]", text)
 
 
 api = API(args.api_url, args.api_key)
-config_result = api.get_config(args.taskid)
+taskid = api.get_taskid()
+config_result = api.get_config(taskid)
+logging.basicConfig(format='%(asctime)s:%(levelname)s:%(message)s', level=logging.INFO,filename='log')
 if config_result["status"] == "fail":
-    error("从API获取配置失败")
+    print("从API获取配置失败")
     exit()
 config = Config(config_result["username"], config_result["dob"], config_result["q1"], config_result["a1"],
                 config_result["q2"], config_result["a2"], config_result["q3"], config_result["a3"],
                 config_result["check_interval"], config_result["tgbot_token"], config_result["tgbot_chatid"],
                 config_result["step_sleep"], config_result["webdriver"])
-
-
 def notification(content):
     if config.tgbot_enable:
         tgbot.sendmessage(content)
+def error(text):
+    logging.critical(text)
+    notification(text)
+    print(datetime.datetime.now().strftime("%H:%M:%S"), "[ERROR]", text)
+
+def info(text):
+    logging.info(text)
+    if config.enable_tg_notify:
+        notification(text)
+    print(datetime.datetime.now().strftime("%H:%M:%S"), "[INFO]", text)
+
+
+
+
 
 
 ocr = ddddocr.DdddOcr()
@@ -331,49 +370,55 @@ def setup_driver():
     options.add_argument("user-agent=Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) "
                          "Chrome/101.0.4951.54 Safari/537.36")
     try:
-        if config.webdriver != "local":
+        if config.remote_driver:
             driver = webdriver.Remote(command_executor=config.webdriver, options=options)
         else:
             driver = webdriver.Chrome(options=options)
     except BaseException as e:
-        error("Webdriver调用失败")
-        print(e)
-        exit()
+        error("Webdriver调用失败:", e)
+        exit(1)
     else:
         driver.set_page_load_timeout(15)
 
 
 def job():
     global api
+    id.time_check()
+    if config.tg_task_job:config.enable_tg_notify=True
     schedule.clear()
+    password = api.get_password(config.username)
+    if password == "":
+        error("获取密码失败，可能是账号不存在")
+        exit()
+    id.password = password
     unlock = False
     setup_driver()
     id.login()
     if id.check_2fa():
-        info("检测到账号开启双重认证，开始解锁")
+        error("检测到账号开启双重认证，开始解锁")
         id.unlock_2fa()
         unlock = True
     else:
         if not (id.check()):
-            info("检测到账号被锁定，开始解锁")
+            error("检测到账号被锁定，开始解锁")
             id.unlock()
             unlock = True
     driver.quit()
     info("账号检测完毕")
-    if unlock:
-        notification(f"Apple ID解锁成功\n新密码：{id.password}")
-        update_result = api.update(id.username, id.password)
-    else:
-        update_result = api.update(id.username, "")
+    update_result = api.update(id.username, id.password)
     if update_result["status"] == "fail":
         error("更新密码失败")
     else:
         info("更新密码成功")
+    if unlock:
+        notification(f"Apple ID解锁成功\n新密码：{id.password}")
     schedule.every(config.check_interval).minutes.do(job)
     return unlock
 
 
 id = ID(config.username, config.dob, config.answer)
+
+
 job()
 while True:
     schedule.run_pending()
