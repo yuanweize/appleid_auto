@@ -13,6 +13,8 @@
         <img src="https://img.shields.io/github/license/pplulee/appleid_auto" alt="GitHub license"/>
     </a>
 </p>
+# [English](https://github.com/yuanweize/appleid_unlocker/blob/backend/README_EN.md) | [中文](https://github.com/yuanweize/appleid_unlocker/blob/backend/README.md)
+
 <h3 align="center">请仔细阅读本文档以及未来我们会推出的 Wiki 文档，再使用。</h3>  
 <h3 align="center">本项目仍在更新当中。</h3>
 
@@ -35,9 +37,7 @@ wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linu
 unzip chromedriver_linux64.zip
 mv chromedriver /usr/bin/
 给予执行权限
-
 chmod +x /usr/bin/chromedriver
-
 ```
 
 # 问题反馈&交流
@@ -47,7 +47,7 @@ Telegram群：[@appleunblocker](https://t.me/appleunblocker)
 # 使用方法
 **使用前请确保已部署好 Webdriver**
 
-### 一键部署unblocker_manager：
+### 一键部署unblocker_backend：
 `wget https://raw.githubusercontent.com/yuanweize/appleid_unlocker/backend/backend/install_backend.sh && bash install_backend.sh`
 
 # 文件说明
