@@ -1,31 +1,18 @@
-<h1 align="center">Apple ID single unlocks the back-end program</h1>
+<h1 align="center">Apple ID unlocker backend program[single ID]</h1>
 
 <p align="center">
-
-<a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
-
-<img src="https://img.shields.io/github/issues/pplulee/appleid_auto.svg" alt="GitHub issues"/>
-
-</a>
-
-<a href="https://github.com/pplulee/appleid_auto/stargazers" style="text-decoration:none" >
-
-<img src="https://img.shields.io/github/stars/pplulee/appleid_auto.svg" alt="GitHub stars"/>
-
-</a>
-
-<a href="https://github.com/pplulee/appleid_auto/network" style="text-decoration:none" >
-
-<img src="https://img.shields.io/github/forks/pplulee/appleid_auto.svg" alt="GitHub forks"/>
-
-</a>
-
-<a href="https://github.com/pplulee/apple_auto/blob/main/LICENSE" style="text-decoration:none" >
-
-<img src="https://img.shields.io/github/license/pplulee/appleid_auto" alt="GitHub license"/>
-
-</a>
-
+    <a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
+        <img src="https://img.shields.io/github/issues/pplulee/appleid_auto.svg" alt="GitHub issues"/>
+    </a>
+    <a href="https://github.com/pplulee/appleid_auto/stargazers" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/stars/pplulee/appleid_auto.svg" alt="GitHub stars"/>
+    </a>
+    <a href="https://github.com/pplulee/appleid_auto/network" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/forks/pplulee/appleid_auto.svg" alt="GitHub forks"/>
+    </a>
+    <a href="https://github.com/pplulee/apple_auto/blob/main/LICENSE" style="text-decoration:none" >
+        <img src="https://img.shields.io/github/license/pplulee/appleid_auto" alt="GitHub license"/>
+    </a>
 </p>
 
 # [English](https://github.com/yuanweize/appleid_unlocker/blob/backend/README_EN.md) | [Chinese](https:// github.com/yuanweize/appleid_unlocker/blob/backend/README.md)

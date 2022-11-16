@@ -1,4 +1,4 @@
-<h1 align="center">Apple ID 单解锁后端程序🔒</h1>
+<h1 align="center">Apple ID 解锁后端程序[单账号]🔒</h1>
 <p align="center">
     <a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
         <img src="https://img.shields.io/github/issues/pplulee/appleid_auto.svg" alt="GitHub issues"/>
