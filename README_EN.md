@@ -45,7 +45,7 @@ mv chromedriver /usr/bin/
 #Grant enforcement authority
 chmod +x /usr/bin/chromedriver
 ```
-
+3. tg_bot's job command adds tg notification
 # Issue Feedback & Communication
 
 The level and ability of developers are limited, and there may be many bugs in the program. You are welcome to ask Issue or Pull Request, and you are also welcome to join the project!

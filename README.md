@@ -43,7 +43,7 @@ mv chromedriver /usr/bin/
 给予执行权限
 chmod +x /usr/bin/chromedriver
 ```
-1. tg_bot的job命令增加tg通知
+3. tg_bot的job命令增加tg通知
 # 问题反馈&交流
 开发者水平和能力有限，程序可能存在诸多bug，欢迎提出 Issue 或 Pull Request ，也欢迎各位大佬加入项目！
 Telegram群：[@appleunblocker](https://t.me/appleunblocker)
