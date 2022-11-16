@@ -45,7 +45,7 @@ mkdir install_backend
 cd install_backend
 echo "开始下载文件……"
 wget https://raw.githubusercontent.com/yuanweize/appleid_auto/backend/backend/main.py -O main.py
-wget https://raw.githubusercontent.com/pplulee/appleid_auto/main/backend/requirements.txt -O requirements.txt
+wget https://raw.githubusercontent.com/yuanweize/appleid_unlocker/backend/backend/requirements.txt -O requirements.txt
 SERVICE_FILE="[Unit]
 Description=appleauto
 Wants=network.target
