@@ -36,7 +36,7 @@ The back-end regularly detects whether the account is locked. If it is locked or
 2. Program**requires Chrome webdriver**, ~~Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it.~~
 
 
-Download address format[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html? Path=106.0.5249.61/**
+Download address format[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/**
 chromedriver install command [note version]:
 ```
 wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip
