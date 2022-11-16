@@ -33,7 +33,7 @@ The back-end regularly detects whether the account is locked. If it is locked or
 
 1. main**back-end program**, deploy through systemctl and obtain task parameters from API [single task];
 
-2. Program**requires Chrome webdriver**, ~~ Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it. ~~
+2. Program**requires Chrome webdriver**, ~~Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it.~~
 
 Download address format[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html? Path=106.0.5249.61/**
 
