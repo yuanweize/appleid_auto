@@ -1,4 +1,4 @@
-<h1 align="center">Apple ID 解锁后端程序[单账号本地部署,非docker]🔒</h1>
+<h1 align="center">Apple ID 解锁后端程序修改版[单账号本地部署,非docker]🔒</h1>
 <p align="center">
     <a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
         <img src="https://img.shields.io/github/issues/pplulee/appleid_auto.svg" alt="GitHub issues"/>
@@ -40,7 +40,7 @@ mv chromedriver /usr/bin/
 给予执行权限
 chmod +x /usr/bin/chromedriver
 ```
-
+3. tg_bot的job命令增加tg通知
 # 问题反馈&交流
 开发者水平和能力有限，程序可能存在诸多bug，欢迎提出 Issue 或 Pull Request ，也欢迎各位大佬加入项目！
 Telegram群：[@appleunblocker](https://t.me/appleunblocker)
