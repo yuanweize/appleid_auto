@@ -15,7 +15,7 @@
     </a>
 </p>
 
-# [English](https://github.com/yuanweize/appleid_unlocker/blob/backend/README_EN.md) | [Chinese](https:// github.com/yuanweize/appleid_unlocker/blob/backend/README.md)
+# [English](https://github.com/yuanweize/appleid_unlocker/blob/backend/README_EN.md) | [Chinese](https://github.com/yuanweize/appleid_unlocker/blob/backend/README.md)
 
 <h3 align="center">Please read this document carefully and the wiki document we will launch in the future before using it. </h3>
 
