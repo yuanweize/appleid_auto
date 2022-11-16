@@ -57,7 +57,6 @@ Telegram群：[@appleunblocker](https://t.me/appleunblocker)
 启动参数：`-api_url <API地址> -api_key <API key> 
 部署**后端管理程序**，该脚本会自动从API站点获取任务[仅单任务]并部署容器，默认同步时间为10分钟（手动同步可重启服务） \
 
-
 # TODO List
 - [x] 自动识别验证码
 - [x] 检测账号被锁
