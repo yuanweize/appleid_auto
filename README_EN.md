@@ -31,7 +31,7 @@ The back-end regularly detects whether the account is locked. If it is locked or
 
 ### Caution:
 
-1. main** back-end program**, deploy through systemctl and obtain task parameters from API [single task];
+1. main**back-end program**, deploy through systemctl and obtain task parameters from API [single task];
 
 2. Program**requires Chrome webdriver**, ~~ Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it. ~~
 
@@ -70,7 +70,7 @@ Telegram group: [@appleunblocker] (https://t.me/appleunblocker)
 - `backend\main.py` Back-end unlocker \
 Description: Account recryption and unlocking through Webdriver and submit a new password to the API. **This program relies on the API** \
 Startup parameters: `-api_url <API address> -api_key <API key>
-Deploy ** back-end administrator**, the script will automatically get the task [single task only] from the API site and deploy the container. The default synchronization time is 10 minutes (manual synchronization can restart the service) \
+Deploy **back-end administrator**, the script will automatically get the task [single task only] from the API site and deploy the container. The default synchronization time is 10 minutes (manual synchronization can restart the service) \
 # TODO List
 
 - [x] Automatic identification verification code
