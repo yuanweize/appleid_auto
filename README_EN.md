@@ -58,7 +58,7 @@ Telegram group: [@appleunblocker] (https://t.me/appleunblocker)
 
 ### One-click deployment unblocker_backend:
 
-`wget https://raw.githubusercontent.com/yuanweize/appleid_unlocker/backend/backend/install_backend.s H && bash install_backend.sh`
+`wget https://raw.githubusercontent.com/yuanweize/appleid_unlocker/backend/backend/install_backend.sh && bash install_backend.sh`
 
 # File Description
 
