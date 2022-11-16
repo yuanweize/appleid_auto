@@ -71,7 +71,6 @@ Telegram group: [@appleunblocker] (https://t.me/appleunblocker)
 Description: Account recryption and unlocking through Webdriver and submit a new password to the API. **This program relies on the API** \
 Startup parameters: `-api_url <API address> -api_key <API key>
 Deploy ** back-end administrator**, the script will automatically get the task [single task only] from the API site and deploy the container. The default synchronization time is 10 minutes (manual synchronization can restart the service) \
-
 # TODO List
 
 - [x] Automatic identification verification code
