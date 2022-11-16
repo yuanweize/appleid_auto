@@ -33,6 +33,7 @@
 1. main**后端程序**，通过systemctl部署并从API获取任务参数[单任务]；
 2. 程序**需要使用Chrome webdriver**，~~推荐使用Docker版 [selenium/standalone-chrome](https://hub.docker.com/r/selenium/standalone-chrome)，使用方法请自行寻找。~~
 下载地址格式[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html?path=106.0.5249.61/**
+
 chromedriver安装命令[注意版本]:
 ```
 wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip
