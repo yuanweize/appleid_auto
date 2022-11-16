@@ -33,21 +33,21 @@ The back-end regularly detects whether the account is locked. If it is locked or
 
 1. main** back-end program**, deploy through systemctl and obtain task parameters from API [single task];
 
-2. Program** requires Chrome webdriver**, ~~ Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it. ~~
+2. Program**requires Chrome webdriver**, ~~ Docker version is recommended [selenium/standalone-chrome] (https://hub.docker.com/r/selen Ium/standalone-chrome), please find your own way to use it. ~~
 
 Download address format[106.0.5249.61]:**https://chromedriver.storage.googleapis.com/index.html? Path=106.0.5249.61/**
 
 ```
 
-Wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip
+wget https://chromedriver.storage.googleapis.com/106.0.5249.61/chromedriver_linux64.zip
 
-Unzip chromedriver_linux64.zip
+unzip chromedriver_linux64.zip
 
-Mv chromedriver /usr/bin/
+mv chromedriver /usr/bin/
 
 Grant enforcement authority
 
-Chmod +x /usr/bin/chromedriver
+chmod +x /usr/bin/chromedriver
 
 ```
 
@@ -78,17 +78,10 @@ Deploy ** back-end administrator**, the script will automatically get the task [
 # TODO List
 
 - [x] Automatic identification verification code
-
 - [x] Detect that the account is locked
-
 - [x] Detect two-step verification
-
 - [ ] Check that the password is correct
-
 - [ ] Delete the device
-
 - [x] Modify the password
-
 - [x] Escalate the password
-
 - [x] Telegram Bot Notification
