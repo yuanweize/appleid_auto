@@ -1,4 +1,4 @@
-<h1 align="center">Apple ID unlocker backend program[single ID]</h1>
+<h1 align="center">Apple ID unlocker backend program[Single account local deployment, not docker]</h1>
 
 <p align="center">
     <a href="https://github.com/pplulee/appleid_auto/issues" style="text-decoration:none">
